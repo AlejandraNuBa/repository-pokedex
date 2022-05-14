@@ -10,12 +10,12 @@ import {
 	Typography,
 	Grid,
 } from "@material-ui/core";
-import styles from '../styles/Home.module.css'
 
 
 function Home() {	
 	const [pokemones, setPokemones] = useState([])
 	const [pokemon, setPokemon] = useState({})
+	const [indice, setIndice] = useState(0)
 
 	console.log('pokemon', pokemon)
 
@@ -25,7 +25,9 @@ function Home() {
 		}
 	}, [pokemones])
 
-	const showPokemon = pokemon => {
+	const showPokemon = (pokemon, i) => {
+      setIndice(i)
+      console.log( 'indice', i )
 			var config = {
 			method: 'get',
 			url: pokemon.url,
@@ -45,7 +47,8 @@ function Home() {
 		const response = await myFunction();
 		setPokemones(response)
 	}
-const myFunction = () => {
+  const myFunction = () => {
+    console.log('indice', indice)
     return new Promise((resolve, reject) => {
        var config = {
 				method: 'get',
@@ -65,60 +68,80 @@ const myFunction = () => {
     });
 }
   return (
-    <Grid className={styles.container} id="tableLeadsId">
-      <Grid className={styles.table} >
-			<TableContainer>
-				<Table >
-					<TableHead>
-						<TableRow >
-							<TableCell>#</TableCell>
-							<TableCell>pokemon</TableCell>
-							<TableCell>nombre</TableCell>
-							<TableCell>url</TableCell>
-						</TableRow>
-					</TableHead>
-
-					<TableBody>
-						{pokemones.map((pokemon, i) => (
-							<TableRow key={i} onClick={() => showPokemon(pokemon) } >
-								<TableCell>{i}</TableCell>
-								<TableCell>{pokemon.name}</TableCell>
-								<TableCell>{pokemon.name}</TableCell>
-								<TableCell>{pokemon.name}</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-        </TableContainer>
+    <div className="container">
+      <Grid className="d-md-flex" id="tableLeadsId">
+        <Grid>
+          <TableContainer className="table-pokemones">
+            <Table>
+            <TableHead>
+              <TableRow >
+                <TableCell className="title-table">#</TableCell>
+                <TableCell className="title-table">Name</TableCell>
+                <TableCell className="title-table">Weight</TableCell>
+                <TableCell className="title-table">Width</TableCell>
+              </TableRow>
+            </TableHead>
+              <TableBody>
+                {pokemones.map((poke, i) => (
+                  <TableRow key={i} onClick={() => showPokemon(poke, i) } >
+                    <TableCell className="cursor-pointer select-celda">{i}</TableCell>
+                    <TableCell className="cursor-pointer select-celda">{poke.name}</TableCell>
+                    {indice === i ? (
+                        <TableCell>{pokemon?.weight} kg</TableCell>
+                      ) : ( 
+                        <TableCell>{}</TableCell>
+                      )               
+                    }
+                     {indice === i ? (
+                        <TableCell>{pokemon?.height} m</TableCell>
+                      ) : (
+                        <TableCell>{}</TableCell>
+                      )             
+                    }
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+        <Grid id="details-pokemon" className="card-pokemon">
+          {indice > 0 ? (
+            <Grid className="card-image">
+              <img
+                src={pokemon?.sprites?.back_default}
+                alt="pokemon"
+                className="pokemon-img"
+              />
+              <Typography className="name-card" >
+                {''} {' '}
+                {pokemon.name}
+              </Typography>
+              <Typography className="title-card">
+                {'Experiencia: '} {' '}
+              </Typography>
+              <Typography className="data-card">
+                {pokemon.base_experience}
+              </Typography>
+              <Typography className="title-card">
+                  {'Habilidades:  '} {' '}
+                {pokemon?.abilities?.map(item => (
+                  <Typography className="data-card">
+                    {item?.ability?.name}
+                  </Typography>
+              ))}
+                  </Typography>
+            </Grid>
+          ) : <Grid className="no-pokemon">
+                <h2 className="text-md-center">Select your Pokemon!</h2>
+                <img
+                src="https://media0.giphy.com/media/Gm7LdndVpiCs0/giphy.gif?cid=ecf05e47xu9cdhqc8jz37xsec497t3k7t8mtm0x3vjs64ouy&rid=giphy.gif&ct=g"
+                alt="Pokebola"
+                className="pokebola-img text-md-left"
+                />
+              </Grid> }
+        </Grid>
       </Grid>
-			<Grid>
-				{pokemon ? (
-				<Grid>
-					<img
-						className={styles.container}
-						src={pokemon?.sprites?.back_default}
-						alt="pokemon"
-					/>
-				<Typography>
-					{'el nombre del pokemon es: '} {' '}
-					{pokemon.name}
-				</Typography>
-				<Typography>
-					{'experiencia: '} {' '}
-          {pokemon.base_experience}
-        </Typography>
-				<Typography>
-						{'las habilidades son:  '} {' '}
-					{pokemon?.abilities?.map(item => (
-						<Typography>
-							{item?.ability?.name}
-          	</Typography>
-        ))}
-						</Typography>
-			</Grid>
-			) : null}
-      </Grid>
-		</Grid>
+    </div>
   )
 }
 export default Home

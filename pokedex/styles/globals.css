@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Macondo';
 }
 
 a {
@@ -13,4 +12,58 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.MuiTableCell-root {
+  font-family: 'Macondo'!important;
+}
+
+/*desktop*/
+@media (min-width: 981px) {
+  .container {
+    max-width: 900px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .d-md-flex {
+    display: flex!important;
+  }
+
+  .text-md-center {
+    text-align: center!important;
+  }
+
+  .text-md-left {
+    text-align: left!important;
+  }
+}
+
+/*mobile*/
+@media (max-width: 981px) {
+  .container {
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .d-flex {
+    display: flex!important;
+  }
+
+  .text-center {
+    text-align: center!important;
+  }
+
+  .text-left {
+    text-align: left!important;
+  }
 }

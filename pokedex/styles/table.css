@@ -1,0 +1,84 @@
+.title-table {
+	border: 1px solid #102BA6;
+	border-bottom: 3px solid #102BA6 !important;
+	border-top: 1px solid #102BA6;
+	border-left: 2px solid #102BA6;
+	border-right: 2px solid #102BA6;
+}
+
+/*desktop*/
+@media (min-width: 981px) {
+	#tableLeadsId {
+    margin-top: 60px;
+    margin-bottom: 60px;
+	}
+
+	.MuiTableRow-head .MuiTableCell-root {
+    line-height: 2.5;
+    height: 30px !important;
+    padding: 2px;
+		text-align: center;
+		font-weight: 700;
+		background-color: #E3E3E5;
+	}
+
+	.table-pokemones {
+		border: 3px solid #102BA6;
+		width: 520px !important;
+    margin-right: 40px;
+    height: 300px;
+  	overflow-y: scroll;
+		box-shadow: 10px 10px 10px 5px rgb(0 0 0 / 50%);
+	}
+
+	.MuiTableCell-body {
+		padding: 8px !important;
+		line-height: 0.5 !important;
+		border-right: 2px solid #102BA6;
+		text-align: center !important;
+		color: #333;
+	}
+
+	.select-celda:hover {
+		background-color: #3856D9;
+		color: #fff;
+	}
+
+	.card-pokemon {
+		padding-left: 10px;
+    padding-right: 10px;
+	}
+
+	.pokemon-img {
+    min-width: 100% !important;
+		padding: 10px;
+	}
+
+	.title-card {
+    font-size: 14px!important;
+		font-weight: 600!important;
+		color: #B36F1C;
+	}
+
+	.name-card {
+    font-size: 20px!important;
+		font-weight: 600!important;
+		color: #631C89!important;
+	}
+
+	.data-card {
+		font-size: 13px!important;
+		font-weight: 400!important;
+		color: #333!important;
+	}
+
+	.pokebola-img {
+    width: 80%;
+    box-shadow: 10px 10px 10px 8px rgb(0 0 0 / 40%);
+	}
+}
+
+/*mobile*/
+@media (max-width: 981px) {
+
+}
